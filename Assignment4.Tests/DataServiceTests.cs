@@ -94,7 +94,6 @@ public class DataServiceTests
     }
 
 
-#if comment
 
     /* products */
 
@@ -108,6 +107,7 @@ public class DataServiceTests
         Assert.Null(product.QuantityPerUnit);
         Assert.Equal(0, product.UnitsInStock);
     }
+#if comment
     [Fact]
     public void GetProduct_ValidId_ReturnsProductWithCategory()
     {

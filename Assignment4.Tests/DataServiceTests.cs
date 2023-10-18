@@ -107,7 +107,7 @@ public class DataServiceTests
         Assert.Null(product.QuantityPerUnit);
         Assert.Equal(0, product.UnitsInStock);
     }
-#if comment
+
     [Fact]
     public void GetProduct_ValidId_ReturnsProductWithCategory()
     {
@@ -116,6 +116,8 @@ public class DataServiceTests
         Assert.Equal("Chai", product.Name);
         Assert.Equal("Beverages", product.CategoryName);
     }
+
+#if comment
 
     [Fact]
     public void GetProductsByCategory_ValidId_ReturnsProductWithCategory()

@@ -63,9 +63,30 @@ public class DataService
         }
         return false;
     }
+    public DTOProductWithCategoryName? GetProduct(int productId)
+    {
+        var db = new NorthwindContex();
 
-  
-    
+        var x = db.Products.Include(x => x.Category)
+                          .FirstOrDefault(x => x.Id == productId);
+        if (x != null)
+        {
+            return CreateDto(x);
+        }
+
+        return null;
+
+    }
+
+    public DTOProductWithCategoryName CreateDto(Product product)
+    {
+        return new DTOProductWithCategoryName
+        {
+            Name = product.Name,
+            CategoryName = product.Category.Name
+
+        };      
+    }
 
 }
 

@@ -16,6 +16,8 @@ public class Product
 
     public Category Category { get; set; }
 
+
+
     public override string ToString()
     {
         return $"{Id}, {Name}, {Category}";

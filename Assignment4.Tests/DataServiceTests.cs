@@ -12,7 +12,7 @@ public class DataServiceTests
         Assert.Null(category.Name);
         Assert.Null(category.Description);
     }
-#if comment
+
     [Fact]
     public void GetAllCategories_NoArgument_ReturnsAllCategories()
     {
@@ -29,6 +29,7 @@ public class DataServiceTests
         var category = service.GetCategory(1);
         Assert.Equal("Beverages", category.Name);
     }
+
 
     [Fact]
     public void CreateCategory_ValidData_CreteCategoryAndReturnsNewObject()
@@ -62,6 +63,8 @@ public class DataServiceTests
         Assert.False(result);
     }
 
+
+
     [Fact]
     public void UpdateCategory_NewNameAndDescription_UpdateWithNewValues()
     {
@@ -80,6 +83,8 @@ public class DataServiceTests
         service.DeleteCategory(category.Id);
     }
 
+
+
     [Fact]
     public void UpdateCategory_InvalidID_ReturnsFalse()
     {
@@ -88,6 +93,8 @@ public class DataServiceTests
         Assert.False(result);
     }
 
+
+#if comment
 
     /* products */
 
@@ -101,7 +108,6 @@ public class DataServiceTests
         Assert.Null(product.QuantityPerUnit);
         Assert.Equal(0, product.UnitsInStock);
     }
-
     [Fact]
     public void GetProduct_ValidId_ReturnsProductWithCategory()
     {

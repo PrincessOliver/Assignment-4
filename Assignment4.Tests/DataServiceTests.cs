@@ -117,7 +117,7 @@ public class DataServiceTests
         Assert.Equal("Beverages", product.CategoryName);
     }
 
-#if comment
+
 
     [Fact]
     public void GetProductsByCategory_ValidId_ReturnsProductWithCategory()
@@ -130,6 +130,7 @@ public class DataServiceTests
         Assert.Equal("Lakkalikööri", products.Last().Name);
     }
 
+#if comment
     [Fact]
     public void GetProduct_NameSubString_ReturnsProductsThatMatchesTheSubString()
     {
@@ -172,7 +173,7 @@ public class DataServiceTests
         Assert.Equal(830, orders.Count);
     }
 
-
+    // Compositekey. .HasKey. Google EF composite key
     /* order details */
     [Fact]
     public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()

@@ -12,4 +12,10 @@ namespace DataLayer
         public string? CategoryName { get; set; }
         public string? Name { get; set; }
     }
+
+    public class DTOProductNameWithCategoryName
+    {
+        public string? CategoryName { get; set; }
+        public string? ProductName { get; set; }
+    }
 }

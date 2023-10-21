@@ -1,4 +1,5 @@
 using DataLayer;
+using Microsoft.EntityFrameworkCore;
 namespace Assignment4.Tests;
 
 public class DataServiceTests
@@ -130,7 +131,6 @@ public class DataServiceTests
         Assert.Equal("Lakkalikööri", products.Last().Name);
     }
 
-#if comment
     [Fact]
     public void GetProduct_NameSubString_ReturnsProductsThatMatchesTheSubString()
     {
@@ -172,7 +172,6 @@ public class DataServiceTests
         var orders = service.GetOrders();
         Assert.Equal(830, orders.Count);
     }
-
     // Compositekey. .HasKey. Google EF composite key
     /* order details */
     [Fact]
@@ -210,6 +209,4 @@ public class DataServiceTests
         Assert.Equal(14, orderDetails.First().UnitPrice);
         Assert.Equal(12, orderDetails.First().Quantity);
     }
-#endif
-
 }

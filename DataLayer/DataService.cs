@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 
 namespace DataLayer;
 
@@ -98,7 +99,71 @@ public class DataService
             })
             .ToList();
     }
-        
+
+    public IList<DTOProductNameWithCategoryName> GetProductByName(string subString)
+    {
+        var db = new NorthwindContex();
+        return db.Products
+            .Where(x => x.Name.Contains(subString))
+            .Select(x => new DTOProductNameWithCategoryName
+            {
+                CategoryName = x.Category.Name,
+                ProductName = x.Name
+            })
+            .ToList();
+    }
+
+    public Order GetOrder(int orderId)
+    {
+        var db = new NorthwindContex();
+        var res = db.Orders
+            .Include(x => x.OrderDetails)
+            .ThenInclude(x => x.Product)
+            .ThenInclude(x => x.Category)
+            .FirstOrDefault(x => x.Id == orderId);
+
+        return res;
+    }
+
+    public IList<Order> GetOrders()
+    {
+        var db = new NorthwindContex();
+        return db.Orders.ToList();
+    }
+
+    public IList<DTOProductNameUnitPriceAndQuantity> GetOrderDetailsByOrderId(int orderId)
+    {
+        var db = new NorthwindContex();
+        return db.OrderDetails
+            .Include(x => x.Product)
+            .Where(x => x.OrderId == orderId)
+            .Select(x => new DTOProductNameUnitPriceAndQuantity
+            {
+                Product = x.Product,
+                UnitPrice = x.UnitPrice,
+                Quantity = x.Quantity
+
+            })
+            .ToList();
+    }
+
+    public IList<DTOOrderDateUnitPriceAndQuantity> GetOrderDetailsByProductId(int productId)
+    {
+        var db = new NorthwindContex();
+        return db.OrderDetails
+            .Include(x => x.Order)
+            .Where(x => x.ProductId == productId)
+            .Select(x => new DTOOrderDateUnitPriceAndQuantity
+            {
+                OrderId = x.OrderId,
+                UnitPrice = x.UnitPrice,
+                Quantity = x.Quantity,
+                Order = x.Order
+            })
+            .OrderBy(x => x.OrderId)
+            .ToList();
+    }
+
 }
 
 
